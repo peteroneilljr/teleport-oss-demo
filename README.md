@@ -49,6 +49,10 @@ gh_team_name     = "admins"
 
 ## Run Terraform installer
 
+You will need to authorize the AWS Provider before running terraform apply.
+
+[AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
+
 ```sh
 cd terraform
 terraform apply
