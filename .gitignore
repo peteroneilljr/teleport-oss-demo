@@ -35,3 +35,4 @@ terraform.rc
 **.pem
 terraform/.terraform.lock.hcl
 .DS_Store
+terraform/plan
