@@ -221,7 +221,7 @@ create_file "/tmp/teleport-agent-values.yaml" "
 roles: kube
 authToken: $(tctl tokens add --type=kube --format=text)
 proxyAddr: $CLUSTER_PROXY_ADDRESS:443
-kubeClusterName: MiniKube
+kubeClusterName: minikube
 labels:
   env: oss
 "
@@ -264,7 +264,7 @@ create_teleport_resource "postgresql" "
 kind: db
 version: v3
 metadata:
-  name: PostgreSQL
+  name: postgresql
   description: 'PostgreSQL Database'
   labels:
     env: oss
@@ -304,7 +304,7 @@ create_teleport_resource "grafana" "
 kind: app
 version: v3
 metadata:
-  name: Grafana
+  name: grafana
   description: 'Grafana'
   labels:
     env: oss
@@ -319,7 +319,7 @@ create_teleport_resource "awsconsole" "
 kind: app
 version: v3
 metadata:
-  name: AWS-Console
+  name: aws-console
   description: 'AWS Console Access'
   labels:
     env: oss
