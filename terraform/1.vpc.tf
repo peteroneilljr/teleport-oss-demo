@@ -58,7 +58,7 @@ module "vpc" {
     },
     {
       # internal traffic
-      cidr_blocks = "10.7.0.0/16",
+      cidr_blocks = var.aws_vpc_cidr,
       "from_port" : 0,
       "to_port" : 0,
       "protocol" : "-1"
