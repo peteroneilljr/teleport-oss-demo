@@ -18,11 +18,11 @@
 1. Create GitHub OAuth App
 1. Create OAuth App Secret
 
-![GitHub Oauth Settings](./img/github-oauth.png)
 * Homepage URL: `https://mycluster.example.com`
 * Callback URL: `https://mycluster.example.com/v1/webapi/github/callback`
 * Enable Device Flow: `True`
 
+![GitHub Oauth Settings](./img/github-oauth.png)
 
 ## Create terraform.tfvars
 
@@ -56,14 +56,6 @@ You will need to authorize the AWS Provider before running terraform apply.
 ```sh
 cd terraform
 terraform apply
-```
-
-## Check Installation
-
-If you want to check on the deployment status use these commands to connect the ec2 instance and check the log.
-```sh
-eval "$(terraform output -raw teleport_cluster_ssh)"
-tail -f /var/log/cloud-init-output.log
 ```
 
 ## Log into web app
@@ -127,14 +119,14 @@ tsh ssh $NODE_NAME
 
 ```sh
 tsh db ls
-tsh db connect PostgreSQL --db-user=teleport --db-name=teleport
+tsh db connect postgresql --db-user=teleport --db-name=teleport
 ```
 
 ### Connect to Kubernetes
 
 ```sh
 tsh kube ls
-tsh kube login MiniKube
+tsh kube login minikube
 kubectl get ns
 ```
 
@@ -143,14 +135,14 @@ kubectl get ns
 Run AWS commands through the Teleport Binary
 ```sh
 tsh apps ls
-tsh apps login AWS-Console --aws-role TeleportReadOnly20241124230016265200000003
+tsh apps login aws-console --aws-role TeleportReadOnly20241124230016265200000003
 tsh aws s3 ls
 tsh aws ec2 describe-instances
 ```
 
 Start a proxy tunnel to use the normal AWS binary.
 ```sh
-tsh proxy aws --app AWS-Console
+tsh proxy aws --app aws-console
 
 Started AWS proxy on http://127.0.0.1:64985.
 To avoid port randomization, you can choose the listening port using the --port flag.
@@ -161,3 +153,19 @@ Use the following credentials and HTTPS proxy setting to connect to the proxy:
   export AWS_CA_BUNDLE=/Users/username/.tsh/keys/mycluster.teleport.com/username-app/mycluster.teleport.com/AWS-Console-localca.pem
   export HTTPS_PROXY=http://127.0.0.1:64985
 ```
+
+
+## FAQ / Troubleshooting
+
+## Check Installation
+
+If you want to check on the status of the Cloud Init script use these commands to connect the ec2 instance and check the log.
+```sh
+eval "$(terraform output -raw teleport_cluster_ssh)"
+cat /var/log/cloud-init-output.log
+```
+
+## ACME issues
+
+Let's encrypt limits the number of times you can reissue a certficate. 
+If you're seeing errors for `missing server name` then changing the variable `teleport_cluster_name` should fix the issue. 
