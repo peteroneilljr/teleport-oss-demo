@@ -43,38 +43,10 @@ module "vpc" {
   ]
   default_security_group_ingress = [
     {
-      # peter home
-      cidr_blocks = "97.118.182.250/32",
-      "from_port" : 0,
-      "to_port" : 0,
-      "protocol" : "tcp"
-    },
-    {
       # SSL
       cidr_blocks = "0.0.0.0/0",
       "from_port" : 443,
       "to_port" : 443,
-      "protocol" : "tcp"
-    },
-    {
-      # Postgresql
-      cidr_blocks = "0.0.0.0/0",
-      "from_port" : 5432,
-      "to_port" : 5432,
-      "protocol" : "tcp"
-    },
-    {
-      # mysql
-      cidr_blocks = "0.0.0.0/0",
-      "from_port" : 3306,
-      "to_port" : 3306,
-      "protocol" : "tcp"
-    },
-    {
-      # rdp
-      cidr_blocks = "0.0.0.0/0",
-      "from_port" : 3389,
-      "to_port" : 3389,
       "protocol" : "tcp"
     },
     {
