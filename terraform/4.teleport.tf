@@ -20,7 +20,7 @@ resource "aws_instance" "cluster" {
     gh_client_secret = var.gh_client_secret
     gh_org_name = var.gh_org_name
     gh_team_name = var.gh_team_name
-    aws_role_read_online = aws_iam_role.teleport_assume_ro.arn
+    aws_role_read_only = aws_iam_role.teleport_assume_ro.arn
   })
 
   metadata_options {

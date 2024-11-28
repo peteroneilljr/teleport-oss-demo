@@ -11,7 +11,7 @@ GH_CLIENT_ID=${gh_client_id}
 GH_CLIENT_SECRET=${gh_client_secret}
 GH_ORG_NAME=${gh_org_name}
 GH_TEAM_NAME=${gh_team_name}
-AWS_ROLE_READ_ONLINE=${aws_role_read_online}
+AWS_ROLE_READ_ONLY=${aws_role_read_only}
 
 # Logging Function
 log() {
@@ -187,7 +187,7 @@ spec:
     app_labels:
       '*': '*'
     aws_role_arns:
-    - $AWS_ROLE_READ_ONLINE
+    - $AWS_ROLE_READ_ONLY
 "
 
 create_teleport_resource "node-access" "
